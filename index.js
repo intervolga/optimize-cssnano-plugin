@@ -1,4 +1,5 @@
 const cssnano = require('cssnano');
+const postcss = require('postcss');
 
 /**
  * Optimize cssnano plugin
@@ -10,14 +11,13 @@ function OptimizeCssnanoPlugin(options) {
     sourceMap: false,
     cssnanoOptions: {
       preset: 'default',
-      map: false,
     },
   }, options);
 
   if (this.options.sourceMap) {
-    this.options.cssnanoOptions.map = Object.assign(
+    this.options.sourceMap = Object.assign(
       {inline: false},
-      this.options.cssnanoOptions.map || {});
+      this.options.sourceMap || {});
   }
 }
 
@@ -41,19 +41,27 @@ OptimizeCssnanoPlugin.prototype.apply = function(compiler) {
       const originalCss = asset.source();
 
       // Options for particalar cssnano call
-      const options = JSON.parse(JSON.stringify(self.options.cssnanoOptions));
-      options.to = assetName;
+      const postCssOptions = {
+        from: assetName,
+        to: assetName,
+        map: false,
+      };
+      const cssnanoOptions = self.options.cssnanoOptions;
 
       // Extract or remove previous map
       const mapName = assetName + '.map';
-      if (options.map) {
+      if (self.options.sourceMap) {
         // Use previous map if exist...
         if (compilation.assets[mapName]) {
           const mapObject = JSON.parse(compilation.assets[mapName].source());
 
           // ... and not empty
           if (mapObject.sources.length > 0 || mapObject.mappings.length > 0) {
-            options.map.prev = compilation.assets[mapName].source();
+            postCssOptions.map = Object.assign({
+              prev: compilation.assets[mapName].source(),
+            }, self.options.sourceMap);
+          } else {
+            postCssOptions.map = Object.assign({}, self.options.sourceMap);
           }
         }
       } else {
@@ -61,7 +69,8 @@ OptimizeCssnanoPlugin.prototype.apply = function(compiler) {
       }
 
       // Run minification
-      const promise = cssnano.process(originalCss, options)
+      const promise = postcss([cssnano(cssnanoOptions)])
+        .process(originalCss, postCssOptions)
         .then((result) => {
             if (hasErrors) {
               return;

@@ -25,7 +25,16 @@ module.exports = {
 	plugins: [
     new ExtractTextPlugin("styles.css"),
 
-    new OptimizeCssnanoPlugin({sourceMap: true})
+    new OptimizeCssnanoPlugin({
+      sourceMap: nextSourceMap,
+      cssnanoOptions: {
+        preset: ['default', {
+          discardComments: {
+            removeAll: true,
+          },
+        }],
+      },
+    }),
 	]
 }
 ```
