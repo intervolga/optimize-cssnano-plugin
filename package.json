@@ -1,6 +1,6 @@
 {
   "name": "@intervolga/optimize-cssnano-plugin",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "WebPack 2+ plugin for CSS minification after ExtractTextPluging",
   "main": "index.js",
   "scripts": {
@@ -28,11 +28,13 @@
     "webpack": "^3.0.0"
   },
   "dependencies": {
-    "cssnano": "^3.10.0"
+    "cssnano": "^4.0.0-rc.2",
+    "cssnano-preset-default": "^4.0.0-rc.2",
+    "postcss": "^6.0.9"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
-    "css-loader": "^0.28.4",
+    "css-loader": "^0.28.5",
     "eslint": "^3.19.0",
     "eslint-config-google": "^0.7.1",
     "eslint-plugin-promise": "^3.5.0",

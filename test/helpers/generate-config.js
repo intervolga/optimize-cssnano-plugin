@@ -65,7 +65,16 @@ module.exports = function(entry, prevSourceMap = true, nextSourceMap = true) {
         allChunks: true,
         filename: 'produced.css',
       }),
-      new Plugin({sourceMap: nextSourceMap}),
+      new Plugin({
+        sourceMap: nextSourceMap,
+        cssnanoOptions: {
+          preset: ['default', {
+            discardComments: {
+              removeAll: true,
+            },
+          }],
+        },
+      }),
     ],
 
     target: 'node',

@@ -9,13 +9,13 @@ Just like [optimize-css-assets-webpack-plugin](http://github.com/NMFR/optimize-c
 
 Using npm:
 ```shell
-$ npm install --save-dev optimize-cssnano-plugin
+$ npm install --save-dev @intervolga/optimize-cssnano-plugin
 ```
 
 ## Configuration:
 
 ``` javascript
-var OptimizeCssnanoPlugin = require('@intervolga/optimize-cssnano-plugin');
+const OptimizeCssnanoPlugin = require('@intervolga/optimize-cssnano-plugin');
 module.exports = {
 	module: {
 		loaders: [
@@ -25,7 +25,16 @@ module.exports = {
 	plugins: [
     new ExtractTextPlugin("styles.css"),
 
-    new OptimizeCssnanoPlugin()
+    new OptimizeCssnanoPlugin({
+      sourceMap: nextSourceMap,
+      cssnanoOptions: {
+        preset: ['default', {
+          discardComments: {
+            removeAll: true,
+          },
+        }],
+      },
+    }),
 	]
 }
 ```
