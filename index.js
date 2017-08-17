@@ -39,7 +39,6 @@ OptimizeCssnanoPlugin.prototype.apply = function(compiler) {
       // Original CSS
       const asset = compilation.assets[assetName];
       const originalCss = asset.source();
-      // .replace(/\/\*# sourceMappingURL.+\*\//, '');
 
       // Options for particalar cssnano call
       const options = JSON.parse(JSON.stringify(self.options.cssnanoOptions));
@@ -91,7 +90,6 @@ OptimizeCssnanoPlugin.prototype.apply = function(compiler) {
                   return processedMap.length;
                 },
               };
-              // processedCss += `\n/*# sourceMappingURL=${assetName + '.map'} */`;
             }
           }
         ).catch(function(err) {
