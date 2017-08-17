@@ -25,7 +25,7 @@ module.exports = {
 	plugins: [
     new ExtractTextPlugin("styles.css"),
 
-    new OptimizeCssnanoPlugin()
+    new OptimizeCssnanoPlugin({sourceMap: true})
 	]
 }
 ```
