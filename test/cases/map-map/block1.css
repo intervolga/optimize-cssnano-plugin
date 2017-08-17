@@ -1,0 +1,5 @@
+.block1 {
+    background: black;
+}
+
+@import "block2.css";
