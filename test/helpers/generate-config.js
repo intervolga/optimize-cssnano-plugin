@@ -30,7 +30,9 @@ module.exports = function(entry, prevSourceMap = true, nextSourceMap = true) {
             },
             {
               loader: 'postcss-loader',
-              options: {sourceMap: prevSourceMap},
+              options: {
+                sourceMap: prevSourceMap ? 'inline' : false,
+              },
             },
           ],
         }),
@@ -46,7 +48,7 @@ module.exports = function(entry, prevSourceMap = true, nextSourceMap = true) {
               },
               {
                 loader: 'postcss-loader',
-                options: {sourceMap: prevSourceMap},
+                options: {sourceMap: prevSourceMap ? 'inline' : false},
               },
               {
                 loader: 'sass-loader',
