@@ -1,6 +1,6 @@
 {
   "name": "@intervolga/optimize-cssnano-plugin",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "WebPack 2+ plugin for CSS minification after ExtractTextPluging",
   "main": "index.js",
   "scripts": {
