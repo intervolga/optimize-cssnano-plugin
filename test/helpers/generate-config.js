@@ -4,6 +4,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = function(entry, prevSourceMap = true, nextSourceMap = true) {
   return {
+    mode: 'development',
+
     entry: entry,
 
     output: {
@@ -31,7 +33,7 @@ module.exports = function(entry, prevSourceMap = true, nextSourceMap = true) {
             {
               loader: 'postcss-loader',
               options: {
-                sourceMap: prevSourceMap ? 'inline' : false,
+                sourceMap: prevSourceMap,
               },
             },
           ],
