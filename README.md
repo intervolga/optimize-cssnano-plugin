@@ -8,21 +8,26 @@ Just like [optimize-css-assets-webpack-plugin](http://github.com/NMFR/optimize-c
 ## Installation:
 
 Using npm:
+
 ```shell
-$ npm install --save-dev @intervolga/optimize-cssnano-plugin
+npm install --save-dev @intervolga/optimize-cssnano-plugin
 ```
 
 ## Configuration:
 
-``` javascript
+```javascript
 const OptimizeCssnanoPlugin = require('@intervolga/optimize-cssnano-plugin');
+
 module.exports = {
-	module: {
-		loaders: [
-			{ test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader") }
-		]
-	},
-	plugins: [
+  module: {
+    loaders: [
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+      }
+    ]
+  },
+  plugins: [
     new ExtractTextPlugin("styles.css"),
 
     new OptimizeCssnanoPlugin({
@@ -35,6 +40,6 @@ module.exports = {
         }],
       },
     }),
-	]
+  ]
 }
 ```
