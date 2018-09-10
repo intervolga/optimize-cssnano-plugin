@@ -31,7 +31,7 @@ module.exports = {
     new ExtractTextPlugin("styles.css"),
 
     new OptimizeCssnanoPlugin({
-      sourceMap: nextSourceMap,
+      sourceMap: true, // true for development, false for production
       cssnanoOptions: {
         preset: ['default', {
           discardComments: {
