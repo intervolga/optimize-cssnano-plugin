@@ -8,6 +8,7 @@ const postcss = require('postcss');
  */
 function OptimizeCssnanoPlugin(options) {
   this.options = Object.assign({
+    assetNameRegExp: /\.css$/i,
     sourceMap: false,
     cssnanoOptions: {
       preset: 'default',
@@ -29,7 +30,7 @@ OptimizeCssnanoPlugin.prototype.apply = function(compiler) {
       // Search for CSS assets
       const assetsNames = Object.keys(compilation.assets)
         .filter((assetName) => {
-          return /\.css$/i.test(assetName);
+          return self.options.assetNameRegExp.test(assetName);
         });
 
       let hasErrors = false;
