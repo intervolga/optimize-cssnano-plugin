@@ -29,7 +29,7 @@ OptimizeCssnanoPlugin.prototype.apply = function(compiler) {
       // Search for CSS assets
       const assetsNames = Object.keys(compilation.assets)
         .filter((assetName) => {
-          return /\.css$/i.test(assetName);
+          return /\.css(\?.*)?$/i.test(assetName);
         });
 
       let hasErrors = false;
