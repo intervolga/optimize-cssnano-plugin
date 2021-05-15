@@ -25,12 +25,13 @@
   },
   "homepage": "https://github.com/intervolga/optimize-cssnano-plugin#readme",
   "peerDependencies": {
-    "webpack": "^4.0.0"
+    "webpack": "^4.0.0",
+    "postcss": "^8.2.15"
   },
   "dependencies": {
     "cssnano": "^4.0.0",
     "cssnano-preset-default": "^4.0.0",
-    "postcss": "^7.0.0"
+    "postcss": "^8.2.15"
   },
   "devDependencies": {
     "autoprefixer": "^8.6.5",
